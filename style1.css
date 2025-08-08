@@ -7,19 +7,21 @@ body {
   width: 400px;
 }
 #board {
-  height: 360px;
-  width: 360px;
+  width: 90vw;      
+  max-width: 360px;     
+  aspect-ratio: 1 / 1;      
   margin: 0 auto;
   border: 10px solid rgba(162, 17, 175, 0.959);
   background-color: rgb(234, 93, 247);
   display: flex;
   flex-wrap: wrap;
 }
+
 #board img {
-  width: 118px;
-  height: 118px;
+  width: calc(100% / 3);  
+  height: calc(100% / 3);   
   border: 1px solid rgba(162, 17, 175, 0.959);
-}
+  object-fit: cover;       
 #ref {
   height: 300px;
   width: 300px;
