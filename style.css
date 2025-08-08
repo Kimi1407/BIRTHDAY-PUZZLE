@@ -1,0 +1,34 @@
+body {
+  background: url(HBD.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-attachment: fixed;
+  position: relative;
+}
+
+button {
+  height: 70px;
+  width: 170px;
+  border: none;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  background: linear-gradient(
+    45deg,
+    rgba(247, 94, 213, 0.3),
+    rgb(232, 95, 245, 0.3)
+  );
+  font-size: 14px;
+  font-family: cursive;
+  position: absolute;
+  left: 500px;
+  top: 550px;
+}
+button:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(248, 55, 206, 0.384),
+    rgb(227, 29, 245)
+  );
+}
