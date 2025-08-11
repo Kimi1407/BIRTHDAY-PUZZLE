@@ -3,17 +3,6 @@ var columns = 3;
 var currenttile;
 var othertile;
 
-/*var imgorder = [
-  "pic 1",
-  "pic 2",
-  "pic 3",
-  "pic 4",
-  "pic 5",
-  "pic 6",
-  "pic 7",
-  "pic 8",
-  "pic 9",
-];*/
 var imgorder = ["4", "2", "8", "5", "1", "6", "7", "9", "3"];
 
 window.onload = function puzzle() {
@@ -22,22 +11,29 @@ window.onload = function puzzle() {
       let tile = document.createElement("img");
       tile.id = r.toString() + "-" + c.toString();
       tile.src = imgorder.shift() + ".jpg";
+      tile.classList.add("tile");
 
-      //DRAG
-      tile.addEventListener("dragstart", dragStart); //click an image to drag
-      tile.addEventListener("dragover", dragOver); //moving clicked image around
-      tile.addEventListener("dragentert", dragEnter); //draggimg clicked image ontop another image
-      tile.addEventListener("dragleave", dragLeave); //dragged image leaving its position
-      tile.addEventListener("drop", dragDrop); //dropping clicked image
-      tile.addEventListener("dragend", dragEnd); //tiles are swapped
+      // Desktop drag events
+      tile.addEventListener("dragstart", dragStart);
+      tile.addEventListener("dragover", dragOver);
+      tile.addEventListener("dragentert", dragEnter);
+      tile.addEventListener("dragleave", dragLeave);
+      tile.addEventListener("drop", dragDrop);
+      tile.addEventListener("dragend", dragEnd);
+
+      // Mobile touch events
+      tile.addEventListener("touchstart", touchStart, { passive: false });
+      tile.addEventListener("touchmove", touchMove, { passive: false });
+      tile.addEventListener("touchend", touchEnd);
 
       document.getElementById("board").append(tile);
     }
   }
 };
 
+// ===== Desktop Drag Functions =====
 function dragStart() {
-  currenttile = this; //image being clicked
+  currenttile = this;
 }
 
 function dragOver(e) {
@@ -50,7 +46,37 @@ function dragEnter(e) {
 
 function dragLeave() {}
 
+function dragDrop() {
+  othertile = this;
+}
+
 function dragEnd() {
+  swapTiles();
+}
+
+// ===== Mobile Touch Functions =====
+function touchStart(e) {
+  e.preventDefault();
+  currenttile = e.target;
+}
+
+function touchMove(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (target && target.classList.contains("tile")) {
+    othertile = target;
+  }
+}
+
+function touchEnd(e) {
+  swapTiles();
+}
+
+// ===== Swap Logic for Both Desktop & Mobile =====
+function swapTiles() {
+  if (!currenttile || !othertile || currenttile === othertile) return;
+
   let currCoords = currenttile.id.split("-");
   let r = parseInt(currCoords[0]);
   let c = parseInt(currCoords[1]);
@@ -61,7 +87,6 @@ function dragEnd() {
 
   let moveLeft = r == r2 && c2 == c - 1;
   let moveRight = r == r2 && c2 == c + 1;
-
   let moveUp = c == c2 && r2 == r - 1;
   let moveDown = c == c2 && r2 == r + 1;
 
@@ -74,12 +99,12 @@ function dragEnd() {
     othertile.src = currImg;
   }
   checkWin();
+
+  currenttile = null;
+  othertile = null;
 }
 
-function dragDrop() {
-  othertile = this; //image being exchanged with
-}
-
+// ===== Win Check =====
 function checkWin() {
   let tiles = document.querySelectorAll("#board img");
   let correct = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -104,4 +129,3 @@ function launchConfetti() {
     origin: { y: 0.6 },
   });
 }
-
