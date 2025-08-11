@@ -6,9 +6,8 @@ body {
 #banner {
   max-height: 300px;
   max-width: 400px;
-  width:100%;
-  height:auto;
- 
+  width: 100%;
+  height: auto;
 }
 #board {
   width: 90vw;
@@ -39,5 +38,3 @@ body {
   right: 20px;
   top: 20px;
 }
-
-
