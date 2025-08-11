@@ -31,7 +31,6 @@ window.onload = function puzzle() {
   }
 };
 
-// ===== Desktop Drag Functions =====
 function dragStart() {
   currenttile = this;
 }
@@ -124,8 +123,8 @@ function checkWin() {
 
 function launchConfetti() {
   confetti({
-    particleCount: 5000,
-    spread: 70,
+    particleCount: 1000,
+    spread: 100,
     origin: { y: 0.6 },
   });
 }
