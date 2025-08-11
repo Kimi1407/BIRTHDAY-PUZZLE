@@ -1,30 +1,36 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  position: relative;
 }
 #banner {
   height: 300px;
   width: 400px;
 }
 #board {
-  width: 90vw;      
-  max-width: 360px;     
-  aspect-ratio: 1 / 1;      
+  width: 90vw;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
   margin: 0 auto;
   border: 10px solid rgba(162, 17, 175, 0.959);
   background-color: rgb(234, 93, 247);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
-
 #board img {
-  width: calc(100% / 3);  
-  height: calc(100% / 3);   
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
   border: 1px solid rgba(162, 17, 175, 0.959);
-  object-fit: cover;       
+}
 #ref {
-  height: 300px;
-  width: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
   border: 2px solid rgba(162, 17, 175, 0.959);
   position: absolute;
   right: 20px;
