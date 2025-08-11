@@ -4,8 +4,11 @@ body {
   position: relative;
 }
 #banner {
-  height: 300px;
-  width: 400px;
+  max-height: 300px;
+  max-width: 400px;
+  width:100%;
+  height:auto;
+  display:block;
 }
 #board {
   width: 90vw;
@@ -36,3 +39,4 @@ body {
   right: 20px;
   top: 20px;
 }
+
