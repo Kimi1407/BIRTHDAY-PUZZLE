@@ -99,8 +99,9 @@ function checkWin() {
 
 function launchConfetti() {
   confetti({
-    particleCount: 150,
+    particleCount: 5000,
     spread: 70,
     origin: { y: 0.6 },
   });
 }
+
